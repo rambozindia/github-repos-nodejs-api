@@ -4,7 +4,6 @@ const app = express();
 const PORT = process.env.PORT || 8081;
 const requestIp = 'request-ip';
 
-app.use(requestIp.mw());
 app.get('/', async (req, res) => {
   const username = req.query.username || 'rambozindia';
   try {
@@ -20,7 +19,7 @@ app.get('/', async (req, res) => {
     //   }))
     //   .sort((a, b) => b.stars - a.stars);
 
-    const clientIp = req.clientIp;
+    const clientIp = requestIp.getClientIp(req); 
     const userAgent = req.headers['user-agent'];
 
     res.send(`Client IP Address: ${clientIp}<br>User Agent: ${userAgent}`);
