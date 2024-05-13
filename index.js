@@ -2,22 +2,11 @@ const express = require('express');
 const axios = require('axios');
 const app = express();
 const PORT = process.env.PORT || 8081;
-const requestIp = 'request-ip';
+const requestIp = require('request-ip');
 
 app.get('/', async (req, res) => {
   const username = req.query.username || 'rambozindia';
   try {
-    // const result = await axios.get(
-    //   `https://api.github.com/users/${username}/repos`
-    // );
-    // const repos = result.data
-    //   .map((repo) => ({
-    //     name: repo.name,
-    //     url: repo.html_url,
-    //     description: repo.description,
-    //     stars: repo.stargazers_count
-    //   }))
-    //   .sort((a, b) => b.stars - a.stars);
 
     const clientIp = requestIp.getClientIp(req); 
     const userAgent = req.headers['user-agent'];
